@@ -7,5 +7,5 @@ namespace Projects;
 [global::System.Diagnostics.DebuggerDisplay("Type = {GetType().Name,nq}, ProjectPath = {ProjectPath}")]
 public class OrderService : global::Aspire.Hosting.IProjectMetadata
 {
-    public string ProjectPath => """/Volumes/Cybersoft/dotnet_mcservice/OrderService/OrderService.csproj""";
+    public string ProjectPath => """/Volumes/Cybersoft/AppHost/OrderService/OrderService.csproj""";
 }

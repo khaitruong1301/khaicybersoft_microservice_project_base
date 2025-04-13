@@ -7,5 +7,5 @@ namespace Projects;
 [global::System.Diagnostics.DebuggerDisplay("Type = {GetType().Name,nq}, ProjectPath = {ProjectPath}")]
 public class BlazorWebApp : global::Aspire.Hosting.IProjectMetadata
 {
-    public string ProjectPath => """/Volumes/Cybersoft/dotnet_mcservice/BlazorWebApp/BlazorWebApp.csproj""";
+    public string ProjectPath => """/Volumes/Cybersoft/AppHost/BlazorWebApp/BlazorWebApp.csproj""";
 }

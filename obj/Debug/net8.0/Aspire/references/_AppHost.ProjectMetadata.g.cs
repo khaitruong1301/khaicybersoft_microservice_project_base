@@ -8,5 +8,5 @@ namespace Projects;
 public class AppHost
 {
     private AppHost() { }
-    public static string ProjectPath => """/Volumes/Cybersoft/dotnet_mcservice/AppHost""";
+    public static string ProjectPath => """/Volumes/Cybersoft/AppHost/AppHost""";
 }

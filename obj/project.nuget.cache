@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PfOLV8WQFEk=",
+  "dgSpecHash": "kOGD4ezssws=",
   "success": true,
-  "projectFilePath": "/Volumes/Cybersoft/dotnet_mcservice/AppHost/AppHost.csproj",
+  "projectFilePath": "/Volumes/Cybersoft/AppHost/AppHost/AppHost.csproj",
   "expectedPackageFiles": [
     "/Users/khai/.nuget/packages/aspire.dashboard.sdk.osx-arm64/8.2.2/aspire.dashboard.sdk.osx-arm64.8.2.2.nupkg.sha512",
     "/Users/khai/.nuget/packages/aspire.hosting/8.2.2/aspire.hosting.8.2.2.nupkg.sha512",

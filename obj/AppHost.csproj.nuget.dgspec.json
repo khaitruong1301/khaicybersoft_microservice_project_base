@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Volumes/Cybersoft/dotnet_mcservice/AppHost/AppHost.csproj": {}
+    "/Volumes/Cybersoft/AppHost/AppHost/AppHost.csproj": {}
   },
   "projects": {
-    "/Volumes/Cybersoft/dotnet_mcservice/AppHost/AppHost.csproj": {
+    "/Volumes/Cybersoft/AppHost/AppHost/AppHost.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Volumes/Cybersoft/dotnet_mcservice/AppHost/AppHost.csproj",
+        "projectUniqueName": "/Volumes/Cybersoft/AppHost/AppHost/AppHost.csproj",
         "projectName": "AppHost",
-        "projectPath": "/Volumes/Cybersoft/dotnet_mcservice/AppHost/AppHost.csproj",
+        "projectPath": "/Volumes/Cybersoft/AppHost/AppHost/AppHost.csproj",
         "packagesPath": "/Users/khai/.nuget/packages/",
-        "outputPath": "/Volumes/Cybersoft/dotnet_mcservice/AppHost/obj/",
+        "outputPath": "/Volumes/Cybersoft/AppHost/AppHost/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/khai/.nuget/NuGet/NuGet.Config"

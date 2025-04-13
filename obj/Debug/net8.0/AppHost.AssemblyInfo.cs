@@ -17,13 +17,13 @@ using System.Reflection;
     "t/")]
 [assembly: System.Reflection.AssemblyMetadata("dcpbinpath", "/Users/khai/.nuget/packages/aspire.hosting.orchestration.osx-arm64/8.2.2/tools/ex" +
     "t/bin/")]
-[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "/Volumes/Cybersoft/dotnet_mcservice/AppHost")]
+[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "/Volumes/Cybersoft/AppHost/AppHost")]
 [assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", "/Users/khai/.nuget/packages/aspire.dashboard.sdk.osx-arm64/8.2.2/tools/Aspire.Das" +
     "hboard.dll")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("AppHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+895ace42082f191f160c4062658a00f407ec0b99")]
 [assembly: System.Reflection.AssemblyProductAttribute("AppHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AppHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
