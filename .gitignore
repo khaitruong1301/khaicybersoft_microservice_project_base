@@ -1,0 +1,33 @@
+# .NET build output
+**/bin/
+**/obj/
+
+# Rider/JetBrains config
+.idea/
+*.sln
+
+# VS Code settings (nếu dùng)
+.vscode/
+
+# ASP.NET temp files
+**/wwwroot/node_modules/
+**/node_modules/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+
+# macOS system files
+.DS_Store
+
+# Docker
+**/Dockerfile
+**/docker-compose*
+
+# Optional: nếu bạn không muốn push launchSettings
+**/Properties/launchSettings.json

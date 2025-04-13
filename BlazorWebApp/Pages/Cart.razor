@@ -1,0 +1,96 @@
+@page "/cart/{ProductId:int}"
+@inject HttpClient http
+
+<h3>Đặt hàng</h3>
+
+<EditForm Model="Order" OnValidSubmit="SubmitOrder">
+    <div class="form-group mb-4">
+        <label>Tên sản phẩm</label>
+        <input type="text" class="form-control" @bind="Product.Name" disabled />
+    </div>
+
+    <div class="form-group mb-4">
+        <label>Số lượng</label>
+        <input type="number" class="form-control" @bind="Order.Quantity" />
+    </div>
+
+    <button class="btn btn-primary" type="submit">Đặt hàng</button>
+</EditForm>
+
+@if (Message != null)
+{
+    <div class="mt-3 alert alert-info">@Message</div>
+}
+
+@code {
+    [Parameter]
+    public int ProductId { get; set; }
+
+    public ProductModel Product { get; set; } = new();
+    public OrderModel Order { get; set; } = new(); // ✅ Model cho form
+    public string? Message { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Product = await http.GetFromJsonAsync<ProductModel>($"http://localhost:5216/product/{ProductId}");
+        Order.ProductId = ProductId;
+        Order.Quantity = 1; // mặc định
+    }
+
+    private async Task SubmitOrder()
+    {
+        var orderRequest = new OrderRequest
+        {
+            UserId = 1, // mặc định
+            CreatedAt = DateTime.UtcNow,
+            Total = Product.Price * Order.Quantity,
+            OrderItems = new List<OrderItemRequest>
+            {
+                new OrderItemRequest
+                {
+                    ProductId = Order.ProductId,
+                    Quantity = Order.Quantity,
+                    UnitPrice = Product.Price
+                }
+            }
+        };
+
+        var response = await http.PostAsJsonAsync("http://localhost:5042/api/Order/AddOrder", orderRequest);
+
+        Message = response.IsSuccessStatusCode ? "Đặt hàng thành công!" : "Có lỗi xảy ra khi đặt hàng.";
+    }
+
+    // ✅ Model dùng cho binding Form
+    public class OrderModel
+    {
+        public int ProductId { get; set; }
+        public int Quantity { get; set; }
+    }
+
+    // ✅ Thông tin sản phẩm
+    public class ProductModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public decimal Price { get; set; }
+    }
+
+    // ✅ Model gửi lên API
+    public class OrderRequest
+    {
+        public int Id { get; set; }
+        public int UserId { get; set; }
+        public decimal Total { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public List<OrderItemRequest> OrderItems { get; set; } = new();
+    }
+
+    public class OrderItemRequest
+    {
+        public int Id { get; set; }
+        public int OrderId { get; set; }
+        public int ProductId { get; set; }
+        public int Quantity { get; set; }
+        public decimal UnitPrice { get; set; }
+    }
+}

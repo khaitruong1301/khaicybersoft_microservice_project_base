@@ -1,0 +1,68 @@
+@page "/product"
+
+@inject HttpClient Http
+
+<div class="container">
+    <h3>Product list</h3>
+    <div class="row">
+        @foreach (var item in productList)
+        {
+            <div class="col-4 mt-2">
+                <div class="card">
+                    <img src="https://i.pravatar.cc?u=@item.Id" alt="@item.Name" />
+                    <div class="card-body">
+                        <div class="card-title">
+                            @item.Name
+                        </div>
+                        <div class="card-text"> 
+                            @item.Price
+                        </div>
+                   <NavLink href="@($"/cart/{item.Id}")" class="btn btn-success">
+                    Add to cart 
+                   </NavLink>
+
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+
+    private List<ProductVM> productList = new List<ProductVM>();
+
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Gọi API ở đây nếu cần
+        productList = await Http.GetFromJsonAsync<List<ProductVM>>("http://localhost:5216/api/product/getallproduct");
+        // StateService.OnChange += StateHasChanged;å
+        string data = JsonSerializer.Serialize(productList);
+        Console.WriteLine(data);
+
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        // Xử lý khi nhận tham số mới từ parent
+        await Task.CompletedTask;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Chạy 1 lần sau render đầu tiên
+            await Task.Delay(100);
+        }
+    }
+
+    public void Dispose()
+    {
+        // Cleanup nếu cần
+        // StateService.OnChange -= StateHasChanged;
+    }
+}
