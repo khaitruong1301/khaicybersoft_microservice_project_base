@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using OrderService.Kafka;
 using OrderService.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
 
-
+builder.Services.AddScoped<IKafkaProducer, KafkaProducer>();
 
 // Đọc connection string từ appsettings.json
 var connectionString = builder.Configuration.GetConnectionString("ConnectionString");

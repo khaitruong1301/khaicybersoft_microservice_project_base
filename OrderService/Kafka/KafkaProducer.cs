@@ -11,10 +11,8 @@ namespace OrderService.Kafka{
     {
         private readonly IProducer<string,string> _producer;
         public KafkaProducer(){
-            var config = new ConsumerConfig{
-                GroupId = "order-group",
+            var config = new ProducerConfig{
                 BootstrapServers = "localhost:9092",
-                AutoOffsetReset = AutoOffsetReset.Earliest
             };
             _producer = new ProducerBuilder<string,string>(config).Build();
         }

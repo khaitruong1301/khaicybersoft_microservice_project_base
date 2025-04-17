@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OrderService.Kafka;
 using OrderService.Models;
+using OrderService.Models.ViewModel;
 //using OrderService.Models;
 
 namespace OrderService.Controllers
@@ -26,12 +27,24 @@ namespace OrderService.Controllers
             return Ok(res);
         }
 
-        [HttpGet("AddOrder")]
-        public async Task<IActionResult> AddOrder(Order order)
+        [HttpPost("AddOrder")]
+        public async Task<IActionResult> AddOrder(OrderRequest order)
         {
             await _context.Database.BeginTransactionAsync();
             try {
-                await _context.Orders.AddAsync(order);
+                Order model = new Order();
+                model.UserId = order.UserId;
+                foreach(OrderItemRequest item in order.OrderItems){
+                    OrderItem itemOrder = new OrderItem();
+                    itemOrder.Id = item.Id;
+                    itemOrder.OrderId = model.Id;
+                    itemOrder.ProductId = item.ProductId;
+                    itemOrder.Quantity = item.Quantity;
+
+                }
+
+
+                await _context.Orders.AddAsync(model);
                 _context.SaveChanges();
 
                 await _producer.ProduceAsync("order-topic", new Message<string,string>(){

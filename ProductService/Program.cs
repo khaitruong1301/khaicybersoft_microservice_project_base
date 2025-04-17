@@ -19,6 +19,8 @@ var connectionString = builder.Configuration.GetConnectionString("ProductDbServi
 
 builder.Services.AddDbContext<ProductServiceContext>(options => options.UseLazyLoadingProxies(false).UseSqlServer(connectionString));
 
+builder.Services.AddHostedService<KafkaConsumer>();
+
 
 
 builder.Services.AddCors(options =>
