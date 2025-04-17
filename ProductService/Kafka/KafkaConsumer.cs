@@ -2,7 +2,8 @@
 using System.Threading;
 using Confluent.Kafka;
 using System.Text.Json;
-using ProductService.Models;public class KafkaConsumer(IServiceScopeFactory scopeFactory) : BackgroundService
+using ProductService.Models;
+public class KafkaConsumer(IServiceScopeFactory scopeFactory) : BackgroundService
 {
     protected override Task ExecuteAsync(CancellationToken stoppingToken)
     {

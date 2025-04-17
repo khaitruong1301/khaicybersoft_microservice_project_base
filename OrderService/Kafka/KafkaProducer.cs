@@ -2,7 +2,7 @@ using Confluent.Kafka;
 using Microsoft.Extensions.Logging;
 
 
-namespace OrderService.Kafka{
+namespace OrderService.Kafka{IK
     public interface IKafkaProducer 
     {
         Task ProduceAsync(string topic, Message<string,string> message);
