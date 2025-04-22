@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  productservice:
+    container_name: product_service
+    build:
+      context: ./ProductService
+      dockerfile: Dockerfile
+    ports:
+      - "5001:82"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    networks:
+      - webnet
+
+  blazorwebapp:
+    container_name: blazor_web_app
+    build:
+      context: ./BlazorWebApp
+      dockerfile: Dockerfile
+    ports:
+      - "5005:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - API_BASE_URL=http://product_service
+    depends_on:
+      - productservice
+    networks:
+      - webnet
+
+  kafka:
+    image: confluentinc/cp-kafka:7.3.2
+    hostname: kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zoo:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zoo
+    networks:
+      - webnet
+
+  zoo:
+    image: confluentinc/cp-zookeeper:7.3.2
+    hostname: zoo
+    container_name: zoo
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - webnet
+
+networks:
+  webnet:
+    driver: bridge

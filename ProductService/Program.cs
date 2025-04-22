@@ -32,6 +32,7 @@ builder.Services.AddCors(options =>
 });
 
 
+builder.WebHost.UseUrls("http://*:82");
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -43,7 +44,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll"); // phải đặt trước app.UseAuthorization();
-
+app.Urls.Add("http://*:82");
 
 app.MapControllers();
 app.Run();

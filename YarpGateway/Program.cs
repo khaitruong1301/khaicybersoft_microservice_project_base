@@ -16,6 +16,9 @@ app.Use(async (context, next) =>
     Console.WriteLine($"[Gateway] → {context.Request.Method} {context.Request.Path}");
     await next();
 });
+// YARP Gateway routing
+app.MapReverseProxy();
+
 
 // Swagger only in dev
 if (app.Environment.IsDevelopment())
@@ -27,8 +30,7 @@ if (app.Environment.IsDevelopment())
 // Optional HTTPS redirect (can remove in dev)
 app.UseHttpsRedirection();
 
-// YARP Gateway routing
-app.MapReverseProxy();
+
 
 app.Run();
 

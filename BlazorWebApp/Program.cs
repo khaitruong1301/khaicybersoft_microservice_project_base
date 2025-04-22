@@ -9,9 +9,10 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
-builder.Services.AddHttpClient();
+// builder.Services.AddHttpClient(); //factory 
 
 
+builder.WebHost.UseUrls("http://*:80");
 
 var app = builder.Build();
 
@@ -31,5 +32,5 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
-
+app.Urls.Add("http://*:80");
 app.Run();
